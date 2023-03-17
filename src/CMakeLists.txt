@@ -108,6 +108,7 @@ endif ( OBOE_SUPPORT )
 set ( config_SOURCES ${FluidSynth_BINARY_DIR}/config.h )
 
 set ( libfluidsynth_SOURCES
+    glib_shim.c
     utils/fluid_conv.c
     utils/fluid_conv.h
     utils/fluid_hash.c
@@ -363,7 +364,7 @@ if ( TARGET OpenMP::OpenMP_C AND HAVE_OPENMP )
     target_link_libraries ( libfluidsynth-OBJ PUBLIC OpenMP::OpenMP_C )
 endif()
 
-target_link_libraries ( libfluidsynth-OBJ PUBLIC GLib2::glib-2 GLib2::gthread-2 )
+# target_link_libraries ( libfluidsynth-OBJ PUBLIC GLib2::glib-2 GLib2::gthread-2 )
 
 if ( TARGET SndFile::sndfile AND LIBSNDFILE_SUPPORT )
     target_link_libraries ( libfluidsynth-OBJ PUBLIC SndFile::sndfile )

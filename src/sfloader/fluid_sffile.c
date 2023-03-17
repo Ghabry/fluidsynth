@@ -2252,10 +2252,14 @@ static int fluid_sffile_read_wav(SFData *sf, unsigned int start, unsigned int en
     if(FLUID_IS_BIG_ENDIAN)
     {
         unsigned int i;
+        unsigned short data;
 
         for(i = 0; i < num_samples; i++)
         {
-            loaded_data[i] = FLUID_LE16TOH(loaded_data[i]);
+            data = loaded_data[i];
+            data = (data >> 8) | (data << 8);
+            //loaded_data[i] = FLUID_LE16TOH(loaded_data[i]);
+            loaded_data[i] = data;
         }
     }
 
